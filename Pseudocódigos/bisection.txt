@@ -1,0 +1,23 @@
+FUNCTION Bisect(xl, xu, es, imax, xr, iter, ea)
+	iter = 0 // Starts iterations
+	fl = f(xl) // Evaluates the function at the left limit of the interval
+	DO
+		xrold = xr // Passed approximation
+		xr = (xl + xu)/2 // New approximation
+		iter = iter + 1 // First iteration done
+		IF xr != 0 THEN // If the root was not found
+			ea = ABS((xr - xrold) / xr) * 100 // Calculate error
+		END IF
+		test = fl * f(xr)
+		IF test < 0 THEN // If f(xl) y f(xr) have opposite signs 
+			xu = xr // xr will be the new upper value
+		ELSE IF test > 0 THEN // If f(xl) y f(xr) have same signs
+			xl = xr // xr will be the new lower value
+			fl = fr
+		ELSE // If the zero was not found
+			ea = 0 // Error is zero
+		END IF
+		IF ea < es OR iter >= imax EXIT // If no more iterations are needed
+	END DO
+	Bisect = xr
+END Bisect
