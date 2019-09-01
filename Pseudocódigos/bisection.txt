@@ -1,23 +1,33 @@
-FUNCTION Bisect(xl, xu, es, imax, xr, iter, ea)
-	iter = 0 // Starts iterations
-	fl = f(xl) // Evaluates the function at the left limit of the interval
-	DO
-		xrold = xr // Passed approximation
-		xr = (xl + xu)/2 // New approximation
-		iter = iter + 1 // First iteration done
-		IF xr != 0 THEN // If the root was not found
-			ea = ABS((xr - xrold) / xr) * 100 // Calculate error
-		END IF
-		test = fl * f(xr)
-		IF test < 0 THEN // If f(xl) y f(xr) have opposite signs 
-			xu = xr // xr will be the new upper value
-		ELSE IF test > 0 THEN // If f(xl) y f(xr) have same signs
-			xl = xr // xr will be the new lower value
-			fl = fr
-		ELSE // If the zero was not found
-			ea = 0 // Error is zero
-		END IF
-		IF ea < es OR iter >= imax EXIT // If no more iterations are needed
-	END DO
-	Bisect = xr
-END Bisect
+Bisection(f, a, b, tol) -> [xn, err, iter, fx]
+	% Bisection Method
+	% Inputs:
+	%   - f is a polinomial expression introduced as a symbolic expression
+	%   - a and b are [a, b]
+	%   - tol is the tolerance
+	% Outputs:
+	%   - xn is the solution
+	%   - err is the error
+	%   - iter is the amount of completed iterations
+	%   - fx is f(x)
+	Handle the function
+	Evaluate f(a)
+	Evaluate f(b)
+	If f(a) * f(b) is positive:
+		End function
+	Calculate the maximum amount of iterations: maxIter
+	Starting at iter = 0 and ending at maxIter:
+		Calculate the middle point
+		Evaluate the function at the middle point: f(x_n)
+		Calculate the error
+		If f(x_n) == 0:
+			Exact root found!
+			a = xn
+			b = xn
+		If f(x_n) * f(b) > 0:
+			b = x_n
+      		f(b) = f(x)
+    	else
+      		a = x_n
+      		f(a) = f(x)
+		If the tolerance is satisfied:
+			End function

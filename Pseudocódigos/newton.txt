@@ -1,0 +1,27 @@
+Newton(f, x_0, tol, maxIter) -> [xn, err, iter, fx]
+	% Newton-Raphson Method
+	% Inputs:
+	%   - f is a polinomial expression introduced as a symbolic expression
+	%   - x_0 is the initial value
+	%   - tol is the tolerance
+	% 	- maxIter is the maximum amount of iterations
+	% Outputs:
+	%   - xn is the solution
+	%   - err is the error
+	%   - iter is the amount of completed iterations
+	%   - fx is f(x)
+	Calculate the expression of the derivative of the function
+	Handle the function
+	Handle the derivative
+	Initialize xNext as x0
+	Starting at iter = 0 and ending at maxIter:
+		x_n now is what was previously defined as xNext
+		Evaluate the derivative in x_n: f'(x_n)
+		If f'(x_n) == 0:
+			Alert division by zero
+			End function
+		Evaluate the function f(x)
+		Calculate x_{n+1} using the Newton-Raphson's definition
+		Calculate the error
+		If the tolerance is satisfied:
+			End function
