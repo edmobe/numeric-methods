@@ -1,0 +1,28 @@
+Newton(f, x_0, x_1, tol, maxIter) -> [xn, err, iter, fx]
+	% Secant Method
+	% Inputs:
+	%   - f is a polinomial expression introduced as a symbolic expression
+	%   - x_0 is an initial value
+	%	- x_1 is an initial value
+	%   - tol is the tolerance
+	% 	- maxIter is the maximum amount of iterations
+	% Outputs:
+	%   - xn is the solution
+	%   - err is the error
+	%   - iter is the amount of completed iterations
+	%   - fx is f(x)
+	Handle the function
+	Initialize x_{n-1} as x_0
+	Initialize x_n as x_1
+	Starting at iter = 1 and ending at maxIter:
+		Evaluate the divisor: div
+		If div == 0:
+			Alert division by zero
+			End function
+		Evaluate the function f(x)
+		Calculate x_{n+1} using the Newton-Raphson's definition
+		Calculate the error
+		If the tolerance is satisfied:
+			End function
+		x_{n-1} = x_n
+		x_n = x_{n+1}

@@ -17,7 +17,7 @@ def bisection(expr, a, b, tol):
         _iter {int} -- is the amount of iterations
         fx {float} -- is f(xn)
 
-"""
+    """
     errReturn = [0, 0, 0, 0]
     try:
         f = sympify(expr)

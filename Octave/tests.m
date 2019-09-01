@@ -18,4 +18,12 @@ tol = 0.0001;
 maxIter = 20;
 [xn, err, iter, fx] = newton(f, x0, tol, maxIter)
 
+disp("\nSecant");
+f = x^3-3*x+2;
+x0 = -2.6;
+x1 = -2.4;
+tol = 0.0001;
+maxIter = 20;
+[xn, err, iter, fx] = secant(f, x0, x1, tol, maxIter)
+
 disp("-------- END ----------");

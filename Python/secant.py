@@ -3,12 +3,13 @@ from sympy import *
 x = symbols('x')
 
 
-def newton(expr, x0, tol, maxIter):
-    """ Newton Method
+def secant(expr, x0, x1, tol, maxIter):
+    """ Secant Method
 
     Arguments:
         expr {string} -- is the polinomial expression
         x0 {float} -- is the initial value x_0
+        x1 {float} -- is the initial value x_1
         tol {float} -- is the tolerance
         maxIter {int} -- is the max amount of iterations
     Returns:
@@ -21,19 +22,20 @@ def newton(expr, x0, tol, maxIter):
     errReturn = [0, 0, 0, 0]
     try:
         f = sympify(expr)
-        fd = diff(expr, x)
-        xNext = sympify(x0)
-        for _iter in range(0, maxIter):
-            xn = N(xNext)
-            fdx = fd.subs(x, xn)
-            if (fdx == 0):
+        xLast = sympify(x0)
+        xn = x1
+        for _iter in range(1, maxIter):
+            div = f.subs(x, xn) - f.subs(x, xLast)
+            if (div == 0):
                 print("Error: Division by zero")
                 return errReturn
             fx = f.subs(x, xn)
-            xNext = xn - fx/fdx
+            xNext = xn - (fx*(xn - xLast))/div
             err = abs(xNext - xn)/abs(xNext)
             if (err <= tol):
                 break
+            xLast = xn
+            xn = xNext
         return [N(xn), N(err), _iter, N(fx)]
     except:
         print("There was an error.")
