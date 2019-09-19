@@ -1,9 +1,10 @@
-function [xn, err, iter, fx] = bisection(f, a, b, tol)
-  % Bisection Method
+function [xn, err, iter, fx] = falsePosition(f, an, bn, tol, maxIter)
+  % False Position Method
   % Inputs:
   %   - f is a polinomial expression introduced as a symbolic expression
-  %   - a and b are [a, b]
+  %   - an and bn are [a_n, b_n]
   %   - tol is the tolerance
+  %   - maxIter is the maximum amount of iterations
   % Outputs:
   %   - xn is the solution
   %   - err is the error
@@ -11,33 +12,42 @@ function [xn, err, iter, fx] = bisection(f, a, b, tol)
   %   - fx is f(x)
   % Errors:
   %   - IntervalError: the specified interval does not contain the zero
+  %   - Division by zero
   f = function_handle(f);
-  fa = f(a);
-  fb = f(b);
-  xn = 0;
+  fa = f(an);
+  fb = f(bn);
+  xLast = an;
+  xn = bn;
+  xNext = 0;
   err = 0;
   iter = -1;
   fx = 0;
   if fa * fb > 0
     return
   endif
-  maxIter = 1 + round((log(b - a) - log(tol))/ log(2));
   for iter=0:maxIter
-    xn = (a + b)/2;
+    div = f(xn) - f(xLast);
+    if div == 0
+      disp("Error: Division by zero");
+      return
+    endif
     fx = f(xn);
-    err = abs(b - a);
+    xNext = xn - (fx*(xn - xLast))/div;
+    err = abs(xNext - xn) / abs(xNext);
     if fx == 0
       a = xn;
       b = xn;
-    elseif fb * fx > 0
-      b = xn;
-      fb = fx;
-    else
-      a = xn;
+    elseif fb * fx < 0
+      an = xn;
       fa = fx;
+    else
+      bn = xn;
+      fb = fx;
     endif
     if err <= tol
-      break
+      return
     endif
+    xLast = xn;
+    xn = xNext;
   endfor
 endfunction
