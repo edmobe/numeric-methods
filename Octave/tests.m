@@ -70,10 +70,12 @@ B = [13 28 20 6]';
 
 disp("\nLU Decomposition");
 A = [4 -2 1; 20 -7 12; -8 13 17];
-B = [11; 70; 17];
-X = luDecomposition(A, B)
+B = [11 70 17]';
+%X = luDecomposition(A, B)
 
 disp("\nCholesky Decomposition");
-disp("Developing...");
+A = [25 15 -5 -10; 15 10 1 -7; -5 1 21 4; -10 -7 4 18];
+B = [-25 -19 -21 -5]';
+X = choleskyDecomposition(A, B)
 
 disp("=============== END =================");
