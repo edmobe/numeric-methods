@@ -66,10 +66,12 @@ disp("\n-------- EQUATION SYSTEMS ---------");
 disp("Gaussian Elimination");
 A = [1 2 1 4; 2 0 4 3; 4 2 2 1; -3 1 3 2];
 B = [13 28 20 6]';
-X = gaussianElimination(A, B)
+%X = gaussianElimination(A, B)
 
 disp("\nLU Decomposition");
-disp("Developing...");
+A = [4 -2 1; 20 -7 12; -8 13 17];
+B = [11; 70; 17];
+X = luDecomposition(A, B)
 
 disp("\nCholesky Decomposition");
 disp("Developing...");
