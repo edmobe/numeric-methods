@@ -22,6 +22,8 @@ function [xn, err, iter, fx] = bisection(f, a, b, tol)
     return
   endif
   maxIter = 1 + round((log(b - a) - log(tol))/ log(2));
+  figure;
+  hold on;
   for iter=0:maxIter
     xn = (a + b)/2;
     fx = f(xn);
@@ -38,6 +40,10 @@ function [xn, err, iter, fx] = bisection(f, a, b, tol)
     endif
     if err <= tol
       break
-    endif
+    endif 
+    plot(iter, err, 'ro');
+    title("Bisection Method");
+    xlabel("Error");
+    ylabel("Iterations");
   endfor
 endfunction

@@ -14,6 +14,8 @@ function [xn, err, iter, fx] = newton(f, x0, tol, maxIter)
   f = function_handle(f);
   fd = function_handle(fd);
   xNext = x0;
+  figure
+  hold on
   for iter=0:maxIter
     xn = xNext;
     fdx = fd(xn);
@@ -27,5 +29,9 @@ function [xn, err, iter, fx] = newton(f, x0, tol, maxIter)
     if err <= tol
       break
     endif
+    plot(iter, err, 'ro');
+    title("Newton-Raphson Method");
+    xlabel("Iterations")
+    ylabel("Error")
   endfor
 endfunction
