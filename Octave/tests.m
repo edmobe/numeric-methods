@@ -33,7 +33,10 @@ b = 2;
 %[xn, err, iter, fx] = falsePosition(f, a, b, tol, maxIter)
 
 disp("\nFixed Point");
-disp("Developing...");
+f = sin(x);
+x0 = 2;
+iterMax = 5;
+[xn, fx] = fixedPoint(f, x0, iterMax)
 
 disp("\nMüller");
 f = sin(x)-x/2;
@@ -76,6 +79,6 @@ B = [11 70 17]';
 disp("\nCholesky Decomposition");
 A = [25 15 -5 -10; 15 10 1 -7; -5 1 21 4; -10 -7 4 18];
 B = [-25 -19 -21 -5]';
-X = choleskyDecomposition(A, B)
+%X = choleskyDecomposition(A, B)
 
 disp("=============== END =================");
