@@ -59,14 +59,14 @@ disp("\nNon Linear Conjugate Gradient");
 maxIter = 13;
 xn = [0 3]';
 f = (x - 2)^4+(x-2*y)^2;
-[xn, gNorm] = nonLinearConjugateGradient(f, xn, maxIter)
+%[xn, gNorm] = nonLinearConjugateGradient(f, xn, maxIter)
 
 disp("\n-------- EQUATION SYSTEMS ---------");
 
 disp("Gaussian Elimination");
-A = [4 -1 2 3; 0 -2 7 -4; 0 0 6 5; 0 0 0 3];
-B = [20 -7 4 6]';
-%X = gaussianElimination(A, B)
+A = [1 2 1 4; 2 0 4 3; 4 2 2 1; -3 1 3 2];
+B = [13 28 20 6]';
+X = gaussianElimination(A, B)
 
 disp("\nLU Decomposition");
 disp("Developing...");

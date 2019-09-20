@@ -1,24 +1,21 @@
 function X = gaussianElimination(A, B)
-  X = backSubstitution(A, B);
-endfunction
-
-function X = backSubstitution(A, B)
-  % Back Substitution Method
-  % Solves AX=B
-	% Inputs:
-	%   - A is a NxN upper triangular matrix
-  %   - B is a Nx1 matrix
-	% Outputs:
-	%   - X is the solution matrix
-  n = length(B);
-  X = zeros(n, 1);
-  X(n) = B(n)/A(n, n);
-  for k=n-1:-1:1
-    div = A(k, k);
-    if div != 0
-      X(k) = (B(k) - A(k, k+1:n)*X(k+1:n))/A(k, k);
-    else
-      disp("Error: division by zero");
-    endif
+  n = length(A);
+  X = [A, B];
+  % For each row of augmented matrix
+  for i=1:n
+    pivot = X(i, i);
+    pivotRow = X(i, :);
+    % Multipliers' vector
+    M = zeros(1, n - i);
+    m = length(M);
+    % Get each row multiplier
+    for k=1:m
+      M(k) = X(i + k, i) / pivot;
+    endfor
+    % Modify each row
+    for k=1:m
+      X(i + k, :) = X(i + k, :) - pivotRow*M(k);
+    endfor
   endfor
+  X = backSubstitution(X(1:n, 1:n), X(:,n+1));
 endfunction
