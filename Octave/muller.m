@@ -14,7 +14,7 @@ function [x2, err, iter, fx] = muller(f, x0, x1, x2, tol, maxIter)
 	%   - fx is f(x)
   % Errors:
   %   - Division by zero
-  %   - No real solution: no real solution found for ax^2+bx+c
+  %   - No real solution: no real solution found for ax**2+bx+c
   f = function_handle(f);
   for iter=1:maxIter
     div = (x0 - x1)*(x0 - x2)*(x1 - x2);
