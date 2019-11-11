@@ -1,3 +1,3 @@
-function y = myFunction(x)
-  y = 1/x;
+function f = myFunction(x)
+  f = log(x);
 endfunction
