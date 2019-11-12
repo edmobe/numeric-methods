@@ -10,4 +10,5 @@ function yn = predictorCorrector(a, b, y0, N)
     stem(xn, yn, 'or')
     hold on
   endfor
+  x = a:0.1:b
 endfunction
